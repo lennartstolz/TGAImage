@@ -1,0 +1,20 @@
+excluded:
+    - .build/
+    - Package.swift
+    - Tests/LinuxMain.swift
+    - Tests/TGAImageTests/XCTestManifests.swift
+
+opt_in_rules:
+    - force_unwrapping
+    
+disabled_rules:
+    - nesting
+
+identifier_name:
+    excluded:
+    - r
+    - g
+    - b
+    - x
+    - y
+
