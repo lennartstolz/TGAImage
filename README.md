@@ -22,7 +22,7 @@ var image = TGAImage(width: 4, height: 1, color: .white)
 image[0, 0] = .red
 image[1, 0] = .green
 image[2, 0] = .blue
-image[3, 0] = TGAColor(r: 255, g: 165, b: 0)
+image[3, 0] = [255, 165, 0]
 
 // 💾 Writing the '.tga' data to disk
 let data = image.tgaData()

@@ -12,6 +12,15 @@ final class TGAColorTests: XCTestCase {
         XCTAssertEqual(3, color.b)
     }
 
+    // MARK: ExpressibleByArrayLiteral Tests
+
+    func testTheExpressibleByArrayLiteralInitializer() {
+        let color: TGAColor = [1, 2, 3]
+        XCTAssertEqual(1, color.r)
+        XCTAssertEqual(2, color.g)
+        XCTAssertEqual(3, color.b)
+    }
+
     // MARK: Data Tests
 
     func testTheFirstByteContainsBlue() {
