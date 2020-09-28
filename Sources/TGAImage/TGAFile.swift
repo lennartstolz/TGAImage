@@ -86,10 +86,10 @@ extension TGAFile {
         func data() -> Data {
             var data = Data(repeating: 0, count: 18)
             data[02] = imageType.rawValue
-            data[12] = UInt8(255 & imageSpecification.imageWidth)
-            data[13] = UInt8(255 & (imageSpecification.imageWidth >> 8))
-            data[14] = UInt8(255 & imageSpecification.imageHeight)
-            data[15] = UInt8(255 & (imageSpecification.imageHeight >> 8))
+            data[12] = UInt8(truncatingIfNeeded: imageSpecification.imageWidth)
+            data[13] = UInt8(truncatingIfNeeded: imageSpecification.imageWidth >> 8)
+            data[14] = UInt8(truncatingIfNeeded: imageSpecification.imageHeight)
+            data[15] = UInt8(truncatingIfNeeded: imageSpecification.imageHeight >> 8)
             data[16] = imageSpecification.pixelDepth
             data[17] = imageSpecification.imageDescriptor
             return data
