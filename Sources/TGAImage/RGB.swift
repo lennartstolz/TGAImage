@@ -1,10 +1,8 @@
-import Foundation
-
 /// An object that stores 8-bit RGB color data.
 ///
 /// The order in which the RGB properties of this object are stored matters. They are stored in `(b,g,r)` which enables
 /// us to use their `Data` representation to store the values directly in the `TGAImage` without rearranging the bytes.
-public struct TGAColor : Equatable {
+public struct RGB : Color {
 
     /// The color depth of each RGB component of the color.
     public typealias ColorDepth = UInt8
@@ -34,7 +32,7 @@ public struct TGAColor : Equatable {
 
 // MARK: - Fixed Colors
 
-public extension TGAColor {
+public extension RGB {
 
     /// A color object with RGB values of 255, 255, and 255, representing the "White" color (Hex: `#ffffff`).
     static let white = Self(r: 255, g: 255, b: 255)
@@ -55,7 +53,7 @@ public extension TGAColor {
 
 // MARK: - ExpressibleByArrayLiteral
 
-extension TGAColor : ExpressibleByArrayLiteral {
+extension RGB : ExpressibleByArrayLiteral {
 
     public typealias ArrayLiteralElement = ColorDepth
 

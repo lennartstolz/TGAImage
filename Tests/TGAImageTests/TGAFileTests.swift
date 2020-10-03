@@ -29,13 +29,13 @@ final class TGAFileTests: XCTestCase {
         image[0, 1] = .blue
         image[1, 1] = .white
         let data = TGAFile(image).data()
-        let x0y0 = data[18...20].withUnsafeBytes { $0.load(as: TGAColor.self) }
+        let x0y0 = data[18...20].withUnsafeBytes { $0.load(as: RGB.self) }
         XCTAssertEqual(x0y0, .red)
-        let x1y0 = data[21...23].withUnsafeBytes { $0.load(as: TGAColor.self) }
+        let x1y0 = data[21...23].withUnsafeBytes { $0.load(as: RGB.self) }
         XCTAssertEqual(x1y0, .green)
-        let x0y1 = data[24...26].withUnsafeBytes { $0.load(as: TGAColor.self) }
+        let x0y1 = data[24...26].withUnsafeBytes { $0.load(as: RGB.self) }
         XCTAssertEqual(x0y1, .blue)
-        let x1y1 = data[27...29].withUnsafeBytes { $0.load(as: TGAColor.self) }
+        let x1y1 = data[27...29].withUnsafeBytes { $0.load(as: RGB.self) }
         XCTAssertEqual(x1y1, .white)
     }
 
@@ -104,7 +104,7 @@ extension TGAFileTests {
     }
 
     func testTheColorComponents() {
-        let data = TGAFile.ImageData(pixels: [TGAColor(r: 253, g: 254, b: 255)]).data()
+        let data = TGAFile.ImageData(pixels: [RGB(r: 253, g: 254, b: 255)]).data()
         XCTAssertEqual(255, data[0])
         XCTAssertEqual(254, data[1])
         XCTAssertEqual(253, data[2])

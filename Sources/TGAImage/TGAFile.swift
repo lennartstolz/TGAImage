@@ -109,19 +109,19 @@ extension TGAFile {
     struct ImageData {
 
         /// The pixels of the (wrapped) `TGAImage`.
-        private let pixels: [TGAColor]
+        private let pixels: [RGB]
 
         /// Creates the "TGA IMAGE DATA" from the given pixel data.
         ///
         /// - Parameters:
         ///     - pixels: The pixels of the (wrapped) `TGAImage`.
-        init(pixels: [TGAColor]) {
+        init(pixels: [RGB]) {
             self.pixels = pixels
         }
 
         /// Returns the (raw) `Data` representation of the "TGA IMAGE DATA".
         func data() -> Data {
-            Data(bytes: pixels, count: MemoryLayout<TGAColor>.size * pixels.count)
+            Data(bytes: pixels, count: MemoryLayout<RGB>.size * pixels.count)
         }
 
     }

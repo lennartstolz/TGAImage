@@ -91,7 +91,7 @@ extension TGAImageTests {
         var image = TGAImage(width: 256, height: 256, color: .black)
         for x in 0...255 {
             for y in 0...255 {
-                image[x, y] = TGAColor(r: UInt8(x), g: UInt8(y), b: 255)
+                image[x, y] = RGB(r: UInt8(x), g: UInt8(y), b: 255)
             }
         }
         let referenceData = try getReferenceImageData(named: "gradient-reference-image")
@@ -136,7 +136,7 @@ private extension TGAImage {
     ///     - upperLeft:    The upper left pixel of the area which should be colorized.
     ///     - lowerRight:   The lower right pixel of the area which should be colorized.
     ///     - color:        The color in which the defined area should be colorized.
-    mutating func colorize(from upperLeft: Point, to lowerRight: Point, _ color: TGAColor) {
+    mutating func colorize(from upperLeft: Point, to lowerRight: Point, _ color: RGB) {
         for x in upperLeft.x...lowerRight.x {
             for y in upperLeft.y...lowerRight.y {
                 self[x, y] = color

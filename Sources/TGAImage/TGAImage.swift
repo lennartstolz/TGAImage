@@ -24,7 +24,7 @@ public struct TGAImage {
     ///
     /// The pixel values are stored by rows. E.g. `pixels[4]` describes the fifth pixel of the first row (4,0) of an
     /// image of five pixel width and `pixels[5]` the first pixel in the second row (0,1) of the same image.
-    public private(set) var pixels: [TGAColor]
+    public private(set) var pixels: [RGB]
 
     /// Create a new image instance of the given dimension colored in the specified color.
     ///
@@ -32,7 +32,7 @@ public struct TGAImage {
     ///     - width:    The width of the image in pixels.
     ///     - height:   The height of the image in pixels.
     ///     - color:    The color in which the image should be (initially) colorized.
-    public init(width: Int, height: Int, color: TGAColor = .black) {
+    public init(width: Int, height: Int, color: RGB = .black) {
         self.width = width
         self.height = height
         self.pixels = Array(repeating: color, count: width * height)
@@ -43,7 +43,7 @@ public struct TGAImage {
     /// - Parameters:
     ///     - x: The horizontal position of the pixel.
     ///     - y: The vertical position of the pixel.
-    public subscript(x: Int, y: Int) -> TGAColor {
+    public subscript(x: Int, y: Int) -> RGB {
         get {
             assert(isValidIndex(x: x, y: y), "Invalid index (\(x),\(y)).")
             return pixels[(y * width) + x]
