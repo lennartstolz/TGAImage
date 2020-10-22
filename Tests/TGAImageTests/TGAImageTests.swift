@@ -100,6 +100,102 @@ extension TGAImageTests {
 
 }
 
+// MARK: - Flip Tests
+
+extension TGAImageTests {
+
+    // MARK: Mutating
+
+    func testHorizontalFlip() {
+        var image = TGAImage(width: 100, height: 100, color: .black)
+        image[0, 0] = .red
+        image.flip(.horizontally)
+        XCTAssertEqual(.black, image[0, 0])
+        XCTAssertEqual(.red, image[99, 0])
+    }
+
+    func testVerticalFlip() {
+        var image = TGAImage(width: 100, height: 100, color: .black)
+        image[0, 0] = .red
+        image.flip(.vertically)
+        XCTAssertEqual(.black, image[0, 0])
+        XCTAssertEqual(.red, image[0, 99])
+    }
+
+    func testHorizontalAndVerticalFlip() {
+        var image = TGAImage(width: 100, height: 100, color: .black)
+        image[0, 0] = .red
+        image.flip([.horizontally, .vertically])
+        XCTAssertEqual(.black, image[0, 0])
+        XCTAssertEqual(.red, image[99, 99])
+    }
+
+    // MARK: Non-Mutating
+
+    func testNonMutatingHorizontalFlip() {
+        var source = TGAImage(width: 100, height: 100, color: .black)
+        source[0, 0] = .red
+        let image = source.flipped(.horizontally)
+        XCTAssertEqual(.black, image[0, 0])
+        XCTAssertEqual(.red, image[99, 0])
+    }
+
+    func testNonMutatingVerticalFlip() {
+        var source = TGAImage(width: 100, height: 100, color: .black)
+        source[0, 0] = .red
+        let image = source.flipped(.vertically)
+        XCTAssertEqual(.black, image[0, 0])
+        XCTAssertEqual(.red, image[0, 99])
+    }
+
+    func testNonMutatingHorizontalAndVerticalFlip() {
+        var source = TGAImage(width: 100, height: 100, color: .black)
+        source[0, 0] = .red
+        let image = source.flipped([.horizontally, .vertically])
+        XCTAssertEqual(.black, image[0, 0])
+        XCTAssertEqual(.red, image[99, 99])
+    }
+
+}
+
+// MARK: - Flip Rendering Tests
+
+extension TGAImageTests {
+
+    func testHorizontalFlipRendering() throws {
+        var image = try createBaseImageForFlipTests()
+        image.flip(.horizontally)
+        let flipped =  try getReferenceImageData(named: "red-top-right-reference-image")
+        XCTAssertEqual(image.tgaData(), flipped)
+    }
+
+    func testVerticalFlipRendering() throws {
+        var image = try createBaseImageForFlipTests()
+        image.flip(.vertically)
+        let flipped =  try getReferenceImageData(named: "red-bottom-left-reference-image")
+        XCTAssertEqual(image.tgaData(), flipped)
+    }
+
+    func testHorizontalAndVerticalFlipRendering() throws {
+        var image = try createBaseImageForFlipTests()
+        image.flip([.horizontally, .vertically])
+        let flipped =  try getReferenceImageData(named: "red-bottom-right-reference-image")
+        XCTAssertEqual(image.tgaData(), flipped)
+    }
+
+    /// Helper method to create the base image used to test the rendering of all supported flip transformations.
+    ///
+    /// - Returns: A square (100px x 100px) image with a red colored reactangle in the top left corner of the image.
+    private func createBaseImageForFlipTests() throws -> TGAImage {
+        var image = TGAImage(width: 100, height: 100, color: .black)
+        image.colorize(from: (0, 0), to: (49, 49), .red)
+        let referenceImage = try getReferenceImageData(named: "red-top-left-reference-image")
+        XCTAssertEqual(image.tgaData(), referenceImage)
+        return image
+    }
+
+}
+
 private extension TGAImageTests {
 
     /// Returns the raw data for the specified reference (`.tga`) image.

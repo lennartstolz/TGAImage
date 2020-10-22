@@ -9,6 +9,7 @@ opt_in_rules:
     
 disabled_rules:
     - nesting
+    - colon
 
 identifier_name:
     excluded:
@@ -17,4 +18,3 @@ identifier_name:
     - b
     - x
     - y
-
