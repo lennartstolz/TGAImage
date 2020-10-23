@@ -88,10 +88,10 @@ extension TGAImage {
     public struct FlipDirection : OptionSet {
 
         /// Flips the image horizontally from the orientation of its original pixel data ("up mirror").
-        static let vertically = Self(rawValue: 1 << 0)
+        public static let vertically = Self(rawValue: 1 << 0)
 
         /// Flips the image vertically from the orientation of its original pixel data ("down mirror").
-        static let horizontally = Self(rawValue: 1 << 1)
+        public static let horizontally = Self(rawValue: 1 << 1)
 
         // MARK: - OptionSet
 
