@@ -18,14 +18,7 @@ let package = Package(
             name: "TGAImageTests",
             dependencies: ["TGAImage"],
             resources: [
-                .copy("Resources/white-reference-image.tga"),
-                .copy("Resources/black-reference-image.tga"),
-                .copy("Resources/rgb-reference-image.tga"),
-                .copy("Resources/gradient-reference-image.tga"),
-                .copy("Resources/red-bottom-left-reference-image.tga"),
-                .copy("Resources/red-bottom-right-reference-image.tga"),
-                .copy("Resources/red-top-left-reference-image.tga"),
-                .copy("Resources/red-top-right-reference-image.tga")
+                .copy("Resources")
             ])
     ]
 )
